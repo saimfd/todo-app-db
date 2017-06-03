@@ -1,7 +1,6 @@
-
+const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
-const _ = require('underscore');
 // var Book = require('./models/book.model');
 var {mongoose} = require('./../db/mongoose');
 var {Todo} = require('./../models/todo.model');
@@ -57,14 +56,43 @@ app.delete('/todos/:id', (req, res) => {
     return res.status(404).send({"error": "ID is invalid"})
   }
 
-  Todo.findByIdAndRemove(id).then((doc) => {
-    if(!doc){
+  Todo.findByIdAndRemove(id).then((todo) => {
+    if(!todo){
       res.status(404).send({"error": "No document found to delete"})
     } else {
-      res.send({doc, deleted: true})
+      res.send({todo, deleted: true})
     }
   }).catch((e) => {
     res.send({"error": "An error occured"})
+  })
+
+});
+
+app.patch('/todos/:id', (req, res) => {
+  var id = req.params.id;
+  var body = _.pick(req.body, ['text', 'completed'])
+
+  if(!ObjectID.isValid(id)){
+    return res.status(404).send({"error": "ID not valid"})
+  }
+
+  if(_.isBoolean(body.completed) && body.completed){
+    body.completedAt =  new Date().getTime();
+  } else {
+    body.completed = false;
+    body.completedAt = null
+  }
+
+  Todo.findByIdAndUpdate(id, {
+      $set : body
+    },
+    {new: true}).then((todo) => {
+    if(!todo){
+      return res.status(404).send()
+    }
+    return res.send({todo})
+  }).catch((e) => {
+    res.status(400).send(e);
   })
 
 });
