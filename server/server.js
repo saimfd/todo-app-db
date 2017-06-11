@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 var {mongoose} = require('./../db/mongoose');
 var {Todo} = require('./../models/todo.model');
 var {User} = require('./../models/user.model');
+var {authenticate} = require('./middleware/authenticate.js')
 var {ObjectID} = require('mongodb')
 const port = process.env.PORT;
 app = express()
@@ -102,7 +103,6 @@ app.post('/users', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
   var user = new User(body);
 
-
   user.save().then((user) => {
     return user.generateAuthToken();
   }).then((token) => {
@@ -112,6 +112,12 @@ app.post('/users', (req, res) => {
     res.status(400).send()
   });
 });
+
+
+
+app.get('/users/me', authenticate, (req, res) => {
+  res.send(req.user);
+})
 
 app.listen(port, function(){
   console.log("Started on port " + port);
