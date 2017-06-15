@@ -1,11 +1,11 @@
-var config = require('./../config/config')
+var config = require('./config/config')
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
 // var Book = require('./models/book.model');
-var {mongoose} = require('./../db/mongoose');
-var {Todo} = require('./../models/todo.model');
-var {User} = require('./../models/user.model');
+var {mongoose} = require('./db/mongoose');
+var {Todo} = require('./models/todo.model');
+var {User} = require('./models/user.model');
 var {authenticate} = require('./middleware/authenticate.js')
 var {ObjectID} = require('mongodb')
 const port = process.env.PORT;
