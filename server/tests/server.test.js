@@ -234,7 +234,7 @@ describe('POST /users', () => {
           expect(user).toExist();
           expect(user.password).toNotBe(password);
           done();
-        })
+        }).catch((e) => done(e))
       })
 
   });
@@ -268,7 +268,48 @@ describe('POST /users', () => {
 });
 
 
-
 describe('POST /users/login', () => {
-    
+    it('should return token if user is valid', (done) => {
+      request(app)
+        .post('/users/login')
+        .send({
+          email: users[0].email,
+          password: users[0].password
+        })
+        .expect(200)
+        .expect((res) => {
+          expect(res.headers['x-auth']).toBe(users[0].tokens[0].token)
+        })
+        .end((err, res) => {
+          if(err){
+            return done(err)
+          }
+
+          User.findById(users[0]._id).then((user) => {
+            expect(user.tokens[0]).toInclude({
+              access: "auth",
+              token: res.headers['x-auth']
+            });
+            done();
+          }).catch((e) => done(e))
+
+        })
+    });
+
+    it('should not return token if user is invalid', (done) => {
+      request(app)
+        .post('/users/login')
+        .send({
+          email: "saimfd00@gmail.com",
+          password: "poli"
+        })
+        .expect(400)
+        .end((err) => {
+          if(err){
+            return done(err)
+          }
+          done()
+
+        })
+    });
 });
