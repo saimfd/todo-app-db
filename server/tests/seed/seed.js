@@ -2,15 +2,7 @@ const {ObjectID} = require('mongodb')
 const {Todo} = require('./../../models/todo.model');
 const {User} = require('./../../models/user.model');
 const jwt = require('jsonwebtoken');
-var todos = [{
-  _id: new ObjectID(),
-  text: 'Climb the ladder'
-},{
-  _id: new ObjectID(),
-  text: 'Ride the horse',
-  completed: true,
-  completedAt: 123
-}]
+
 
 const user1Id = new ObjectID();
 const user2Id = new ObjectID();
@@ -26,9 +18,24 @@ var users = [{
 }, {
   _id: user2Id,
   email: "saimfd003@gmail.com",
-  password: "password2"
+  password: "password2",
+  tokens: [{
+    access: 'auth',
+    token: jwt.sign(JSON.stringify({_id: user2Id, access: "auth"}), 'abc123').toString()
+  }]
 }];
 
+var todos = [{
+  _id: new ObjectID(),
+  text: 'Climb the ladder',
+  _userId: user1Id
+},{
+  _id: new ObjectID(),
+  text: 'Ride the horse',
+  completed: true,
+  completedAt: 123,
+  _userId: user2Id
+}]
 
 var populateTodos = (done) => {
   Todo.remove({}).then(() => {
