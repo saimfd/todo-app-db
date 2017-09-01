@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background: #f3eff5;
+  font-family: 'Bubbler One', sans-serif; }
+
+a:focus {
+  text-decoration: none;
+  color: white; }
+
+.sub-text, section.todos .todo-card .todo-info p {
+  text-align: center;
+  font-size: 0.8em;
+  color: #a17fb2; }
+
+.panel, section.todos .todo-card, section.register .register-body, section.login .login-body {
+  background: #fff;
+  width: 100%;
+  height: 100px;
+  margin: 25px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif; }
+
+h1.heading {
+  color: #89609E;
+  text-align: center;
+  margin: 40px 0; }
+
+.text-field, form input[type=text], form input[type=password], form input[type=email] {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  width: 100%;
+  display: block;
+  padding: 5px 3px;
+  margin: 10px 0; }
+
+.button, form input[type=submit] {
+  background: #89609E;
+  color: #fff;
+  display: inline-block;
+  padding: 5px;
+  border: none;
+  border-radius: 3px; }
+
+nav {
+  background: #89609E;
+  color: #fff; }
+  nav ul {
+    list-style: none;
+    float: right;
+    margin: 0; }
+    nav ul li {
+      float: left;
+      padding: 5px 0; }
+      nav ul li a {
+        color: #fff;
+        display: block;
+        padding: 5px;
+        margin: 0 15px;
+        font-size: 1.1em; }
+        nav ul li a:hover {
+          color: white; }
+
+section.todos .todo-card {
+  display: table;
+  position: relative; }
+  section.todos .todo-card:hover .functions {
+    display: block; }
+  section.todos .todo-card .functions {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: none; }
+    section.todos .todo-card .functions a {
+      color: #89609E;
+      display: block;
+      cursor: pointer; }
+  section.todos .todo-card .todo-content {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle; }
+    section.todos .todo-card .todo-content input, section.todos .todo-card .todo-content p.todo-text {
+      color: #89609E;
+      text-align: center;
+      font-size: 1.5em;
+      border: none; }
+  section.todos .todo-card .todo-info p a {
+    color: #a17fb2; }
+  section.todos .todo-card form.add-todo {
+    text-align: center; }
+    section.todos .todo-card form.add-todo input[type='text'] {
+      margin-bottom: -10px; }
+
+section.register .register-body {
+  display: block;
+  height: auto; }
+
+section.login .login-body {
+  display: block;
+  height: auto; }

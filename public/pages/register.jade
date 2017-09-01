@@ -1,0 +1,8 @@
+//output:register.html
+section.register
+  h1.heading Register
+  .register-body
+    form.register.clearfix(ng-submit="register()")
+      input(type="email", name="email", ng-model="email", placeholder="Email")
+      input(type="password", name="password", ng-model="password", placeholder="Password")
+      input.pull-right(type="submit", name="register", value="Sign Up")

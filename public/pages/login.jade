@@ -1,0 +1,8 @@
+//output:login.html
+section.login
+  h1.heading Login
+  .login-body
+    form.login.clearfix(ng-submit="login()")
+      input(type="email", name="email", ng-model="email", placeholder="Email")
+      input(type="password", name="password", ng-model="password", placeholder="Password")
+      input.pull-right(type="submit", name="login", value="Login")

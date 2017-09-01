@@ -1,0 +1,13 @@
+//output:todo.html
+.todo-card
+  .functions
+    a(ng-click="deleteTodo(todoId)", title="Delete"): i.fa.fa-trash
+    a(ng-click="editTodoId = todoId", title="Edit"): i.fa.fa-pencil
+  .todo-content
+    input(type="text", ng-model="todoText", ng-show="todoId == editTodoId", ng-blur="editTodo(todoId)")
+    p.todo-text(ng-hide="todoId == editTodoId") {{todoText}}
+    .todo-info
+      p 
+        a(ng-click="completeTodo(todoId)", ng-show="!completed", style="cursor:pointer") Mark as completed
+        a(ng-show="completed") Completed at {{completedAt}}
+        || Created By: saimfd

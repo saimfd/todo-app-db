@@ -1,0 +1,11 @@
+
+<div class="todo-card">
+  <div class="functions"><a ng-click="deleteTodo(todoId)" title="Delete"><i class="fa fa-trash"></i></a><a ng-click="editTodoId = todoId" title="Edit"><i class="fa fa-pencil"></i></a></div>
+  <div class="todo-content">
+    <input type="text" ng-model="todoText" ng-show="todoId == editTodoId" ng-blur="editTodo(todoId)"/>
+    <p ng-hide="todoId == editTodoId" class="todo-text">{{todoText}}</p>
+    <div class="todo-info">
+      <p> <a ng-click="completeTodo(todoId)" ng-show="!completed" style="cursor:pointer">Mark as completed</a><a ng-show="completed">Completed at {{completedAt}}</a>| Created By: saimfd</p>
+    </div>
+  </div>
+</div>

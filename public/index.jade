@@ -1,0 +1,27 @@
+//output:index.html
+doctype html
+html(ng-app="todoApp")
+  head
+    meta(charset="utf-8")
+    title Todo app
+    script(src="https://use.fontawesome.com/fed9ae7cea.js")
+    link(rel="stylesheet", href="bower_components/bootstrap/dist/css/bootstrap.css")
+    link(rel="stylesheet", href="css/style.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Bubbler+One|Open+Sans")
+    script(src="bower_components/angular/angular.min.js")
+    script(src="bower_components/angular-route/angular-route.min.js")
+    script(src="bower_components/ngstorage/ngStorage.js")
+    script(src="js/app.js")
+    
+  body
+    nav
+      div.container
+        ul.nav-links.clearfix
+          li: a(href="/") Home
+          li(ng-hide="authenticated"): a(href="/#!/register") Register
+          li(ng-hide="authenticated"): a(href="/#!/login") Login
+          li(ng-show="authenticated"): a(href, ng-click="logout()") Logout
+    .container
+      .row
+        .col-md-6.col-md-offset-3
+          div.ng-view

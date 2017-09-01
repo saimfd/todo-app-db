@@ -1,0 +1,11 @@
+//output: todos.html
+section.todos(ng-controller="todoController")
+  h1.heading Todos
+  //- div(ng-repeat="todo in todos")
+  todo(todo-text="{{todo.text}}", completed="todo.completed", completed-at="{{todo.completedAt | date:'MM-dd-yyyy'}}",todo-id="{{todo._id}}", ng-repeat="todo in todos")
+  
+  .todo-card
+    form.add-todo(ng-submit="addTodo()")
+      input(type="text", ng-model="newTodo", placeholder="Todo Text")
+      br
+      input(type="submit", value="Add Todo")
