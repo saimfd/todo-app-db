@@ -1,5 +1,6 @@
 var config = require('./config/config')
 const _ = require('lodash');
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 // var Book = require('./models/book.model');
@@ -11,6 +12,12 @@ var {ObjectID} = require('mongodb')
 const port = process.env.PORT;
 app = express()
 app.use(bodyParser.json())
+app.use(express.static(__dirname + '/../public'))
+// app.use('bower_components/', express.static(__dirname + '../public/bower_components'));
+console.log(__dirname);
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname + "/../public/index.html"))
+});
 
 app.post('/todos', authenticate, (req, res) => {
   var todo = new Todo({
