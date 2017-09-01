@@ -15,7 +15,7 @@ var app = angular.module('todoApp', ['ngRoute', 'ngStorage']).run(['$rootScope',
         $rootScope.authenticated = false;
         delete $localStorage.current_user;
         delete $localStorage.current_user_token;
-        $location.path('/login')
+        $location.path('/')
       }, (err) => {
         console.log(err);
       })
@@ -85,6 +85,9 @@ app.controller('todoController', ['$scope', '$rootScope', '$route','$location', 
 }]);
 
 app.controller('authController', ['$scope', '$rootScope', '$http', '$location', '$localStorage', function($scope, $rootScope, $http, $location, $localStorage) {
+  // if(!$rootScope.authenticated){
+  //   $location.path('/login');
+  // }
   $scope.register = function(){
     $http.post('/users', {
       email: $scope.email,

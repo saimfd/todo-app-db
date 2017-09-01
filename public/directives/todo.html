@@ -5,7 +5,7 @@
     <input type="text" ng-model="todoText" ng-show="todoId == editTodoId" ng-blur="editTodo(todoId)"/>
     <p ng-hide="todoId == editTodoId" class="todo-text">{{todoText}}</p>
     <div class="todo-info">
-      <p> <a ng-click="completeTodo(todoId)" ng-show="!completed" style="cursor:pointer">Mark as completed</a><a ng-show="completed">Completed at {{completedAt}}</a>| Created By: saimfd</p>
+      <p> <a ng-click="completeTodo(todoId)" ng-show="!completed" style="cursor:pointer">Mark as completed</a><a ng-show="completed">Completed at {{completedAt}}</a></p>
     </div>
   </div>
 </div>
